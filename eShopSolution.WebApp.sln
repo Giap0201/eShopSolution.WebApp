@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.Data", "eShopSolution.Data\eShopSolution.Data.csproj", "{52E562B4-BCA9-4A6B-8D1B-258D0D0FD92E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.Application", "eShopSolution.Application\eShopSolution.Application.csproj", "{B5E80A69-CE78-4A8C-8CA0-1D3491176C84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{E315E3EB-FA9A-4D1E-AC68-8DFD915F4EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E315E3EB-FA9A-4D1E-AC68-8DFD915F4EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E315E3EB-FA9A-4D1E-AC68-8DFD915F4EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E562B4-BCA9-4A6B-8D1B-258D0D0FD92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E562B4-BCA9-4A6B-8D1B-258D0D0FD92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E562B4-BCA9-4A6B-8D1B-258D0D0FD92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E562B4-BCA9-4A6B-8D1B-258D0D0FD92E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E80A69-CE78-4A8C-8CA0-1D3491176C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E80A69-CE78-4A8C-8CA0-1D3491176C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E80A69-CE78-4A8C-8CA0-1D3491176C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E80A69-CE78-4A8C-8CA0-1D3491176C84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
