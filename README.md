@@ -3,6 +3,10 @@
 - ASP.NET Core 3.1
 - Entity Framework Core 3.1
 - SQL Server
+## Install packages
+--- Microsoft.EntityFrameworkCore.SqlServer
+--- Microsoft.EntityFrameworkCore.Tools
+--- Microsoft.EntityFrameworkCore.Design
 ## Youtobe Tutorial
 ## How to Configure and Run the Project
 ## How to contribute
