@@ -15,8 +15,11 @@ namespace eShopSolution.Data.Configurations
         {
             builder.ToTable("Carts");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Price).HasPrecision(18, 2);
             builder.HasOne(x => x.Product).WithMany(x => x.Carts).HasForeignKey(x => x.ProductId);
-
+            builder.HasOne(x => x.AppUser)
+                .WithMany(x => x.Carts)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }
