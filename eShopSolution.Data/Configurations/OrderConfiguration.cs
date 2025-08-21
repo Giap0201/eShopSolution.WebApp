@@ -16,6 +16,9 @@ namespace eShopSolution.Data.Configurations
             builder.ToTable("Orders");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.ShipEmail).IsRequired(true).IsUnicode(false).HasMaxLength(50);
+            builder.HasOne(x => x.AppUser)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }
