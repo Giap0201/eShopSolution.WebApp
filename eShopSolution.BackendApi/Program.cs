@@ -1,4 +1,5 @@
 ﻿using eShopSolution.Application.Catalog.Products;
+using eShopSolution.Application.Common;
 using eShopSolution.Data.EF;
 using EShopSulotionUtilities.Constants;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,9 @@ builder.Services.AddDbContext<EShopDbContext>(options =>
         builder.Configuration.GetConnectionString(SystemConstant.MainConnectionString)));
 
 // Add other services (e.g., repositories, application services) here
+builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
+builder.Services.AddTransient<IManageProductService, ManageProductService>();
 
 // 🔹 Thêm Swagger service để đăng ký ISwaggerProvider
 builder.Services.AddEndpointsApiExplorer();
