@@ -7,24 +7,15 @@ namespace eShopSolution.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class ProductController : ControllerBase
     {
         private readonly IPublicProductService _publicProductService;
         private readonly IManageProductService _manageProductService;
+
         public ProductController(IPublicProductService publicProductService, IManageProductService manageProductService)
         {
             _publicProductService = publicProductService;
             _manageProductService = manageProductService;
-        }
-
-        //http://localhost:port/product
-        //phuong thuc lay ra tat ca san pham
-        [HttpGet("{languageId}")]
-        public async Task<IActionResult> Get(string languageId)
-        {
-            var products = await _publicProductService.GetAll(languageId);
-            return Ok(products);
         }
 
         //phuong thuc lay ra san pham theo id
@@ -66,14 +57,13 @@ namespace eShopSolution.BackendApi.Controllers
         public async Task<IActionResult> Update([FromForm] ProductUpdateRequest request)
         {
             var affectedResult = await _manageProductService.Update(request);
-            if(affectedResult == 0) 
+            if (affectedResult == 0)
                 return BadRequest();
             return Ok();
         }
 
         //phuong thuc xoa san pham
         [HttpDelete("{productId}")]
-
         public async Task<IActionResult> Delete(int productId)
         {
             var affectedResult = await _manageProductService.Delete(productId);
@@ -84,15 +74,12 @@ namespace eShopSolution.BackendApi.Controllers
 
         //Phuong thuc cap nhat gia san pham
         [HttpPut("price/{productId}/{newPrice}")]
-        public async Task<IActionResult> UpdatePrice(int productId,decimal newPrice)
+        public async Task<IActionResult> UpdatePrice(int productId, decimal newPrice)
         {
             var isSuccessful = await _manageProductService.UpdatePrice(productId, newPrice);
             if (!isSuccessful)
                 return BadRequest();
             return Ok();
         }
-
-
-
     }
 }
