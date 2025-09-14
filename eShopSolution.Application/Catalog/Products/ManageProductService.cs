@@ -81,7 +81,8 @@ namespace eShopSolution.Application.Catalog.Products
                 };
             }
             _context.Products.Add(product);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return product.Id;
         }
 
         //Xoa san pham
@@ -91,6 +92,7 @@ namespace eShopSolution.Application.Catalog.Products
             if (product == null) throw new EShopException($"Cannot find a product with id: {productId}");
 
             var images = _context.ProductImages.Where(i => i.ProductId == productId);
+
             foreach (var image in images)
             {
                 await _storageService.DeleteFileAsync(image.ImagePath);
@@ -161,14 +163,35 @@ namespace eShopSolution.Application.Catalog.Products
             return pagedResult;
         }
 
-        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<List<ProductImageViewModel>> GetListImages(int productId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ProductViewModel> GetProductById(int productId, string languageId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync
+                (x => x.ProductId == productId && x.LanguageId == languageId);
+
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                Name = productTranslation != null ? productTranslation.Name : null,
+                DateCreated = product.DateCreated,
+                Description = productTranslation != null ? productTranslation.Description : null,
+                Details = productTranslation != null ? productTranslation.Details : null,
+                LanguageId = productTranslation != null ? productTranslation.LanguageId : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation != null ? productTranslation.SeoAlias : null,
+                SeoDescription = productTranslation != null ? productTranslation.SeoDescription : null,
+                SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+            };
+            return productViewModel;
         }
 
         public Task<int> RemoveImage(int imageId)
@@ -179,8 +202,8 @@ namespace eShopSolution.Application.Catalog.Products
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
-            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id
-            && x.LanguageId == request.LanguageId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(
+                x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
             if (product == null || productTranslation == null)
                 throw new EShopException($"Cannot find a product with id: {request.Id}");
             productTranslation.Name = request.Name;
