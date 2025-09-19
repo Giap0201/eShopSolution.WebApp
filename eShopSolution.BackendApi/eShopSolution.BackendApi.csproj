@@ -15,6 +15,7 @@
 
 	<!-- ✅ Thêm mục này -->
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.20" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 	<ItemGroup>
